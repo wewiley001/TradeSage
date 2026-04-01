@@ -146,7 +146,7 @@ class RiskEngine:
         if not ok:
             return False, reason
 
-        if positions is not None:
+        if action == "BUY" and positions is not None:
             ok, reason = self.check_open_positions(positions)
             if not ok:
                 return False, reason
@@ -191,6 +191,8 @@ class TradingEngine:
     def set_autonomous(self, enabled: bool):
         self.autonomous = enabled
         CONFIG["autonomous_mode"] = enabled
+        from config import save_config
+        save_config(CONFIG)
 
     def execute_signal(self, signal: dict, context: dict,
                        force: bool = False) -> dict:

@@ -1155,9 +1155,16 @@ class MainWindow(QMainWindow):
         if self.trading_engine.autonomous:
             auto_results = self.trading_engine.run_autonomous_cycle(signals_result, self._last_context)
             executed = [r for r in auto_results if r.get("status") == "EXECUTED"]
+            rejected = [r for r in auto_results if r.get("status") not in ("EXECUTED", "HOLD")]
             if executed:
                 syms = ", ".join(r["symbol"] for r in executed)
                 self.status_bar.showMessage(f"AUTO-EXECUTED: {syms}")
+            elif rejected:
+                reasons = " | ".join(
+                    f"{r.get('symbol','?')}: {r.get('status','?')} — {r.get('reason','')}"
+                    for r in rejected[:3]
+                )
+                self.status_bar.showMessage(f"AUTO BLOCKED: {reasons}")
 
         # Update UI
         self.sentiment_tab.update(self._last_context, result.get("sentiment", {}))
