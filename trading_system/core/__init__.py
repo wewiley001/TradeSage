@@ -1,0 +1,1 @@
+# TradeSage core package
