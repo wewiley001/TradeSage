@@ -1,0 +1,40 @@
+# ── Virtual Environment ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Python Cache ─────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# ── Build & Distribution Artifacts ───────────────────────────────────────────
+build/
+dist/
+*.spec
+*.egg-info/
+.eggs/
+
+# ── User Runtime Config — CONTAINS API KEYS — never commit ───────────────────
+trading_system/config/settings.json
+config/settings.json
+
+# ── Runtime Logs — contain personal trade data ───────────────────────────────
+trading_system/logs/
+logs/
+
+# ── IDE & OS ─────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Environment Files ─────────────────────────────────────────────────────────
+.env
+.env.*
+*.env
